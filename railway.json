@@ -1,0 +1,5 @@
+{
+  "builder": "dockerfile",
+  "buildCommand": "cd backend && pip install -r requirements.txt",
+  "startCommand": "cd backend && python app.py"
+}
