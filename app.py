@@ -9,24 +9,21 @@ from military_fraud_kg_implementation import (
     Relationship,
     RelationshipType
 )
-
 import json
 
+# 1. INITIALIZE FLASK APP FIRST
+app = Flask(__name__)
+
+# 2. CONFIGURE CORS SECOND
 CORS(app, origins=[
     "https://military-fraud-6mgjmwyy5-gastondana627s-projects.vercel.app",
     "https://military-fraud-kg.vercel.app",
-    "http://localhost:3000"  # For local dev
+    "http://localhost:3000"
 ])
 
-
-
-
-
-
-# Initialize KG
+# 3. THEN load KG data
 kg = MilitaryFraudKnowledgeGraph()
 
-# Load JSON data and populate KG nodes/edges
 try:
     with open('military_fraud_knowledge_graph.json', 'r') as f:
         kg_data = json.load(f)
@@ -85,14 +82,13 @@ try:
 except Exception as e:
     print(f"✗ Error loading KG: {e}")
 
-# --------------------
-# ALL ROUTE DECORATORS GO HERE,
-# NOT inside any __main__ or function!
-# --------------------
+
+# ====== API ENDPOINTS ======
 
 @app.route('/api/health', methods=['GET'])
 def health():
     return jsonify({"status": "healthy"}), 200
+
 
 @app.route('/api/graph', methods=['GET'])
 def get_full_graph():
@@ -114,11 +110,9 @@ def get_full_graph():
         'scheme': 'box',
     }
     
-    # UPDATED: Include ALL properties including sources
     for node in kg.nodes.values():
         node_type = node.entity_type.value
         
-        # Build node object with all metadata
         node_obj = {
             'id': node.id,
             'label': node.name,
@@ -127,7 +121,6 @@ def get_full_graph():
             'shape': shape_map.get(node_type, 'ellipse'),
         }
         
-        # Add all properties to the node (including sources)
         for key, value in node.properties.items():
             node_obj[key] = value
         
@@ -144,7 +137,6 @@ def get_full_graph():
     
     return jsonify({'nodes': nodes_list, 'edges': edges_list}), 200
 
-# ... add your other API endpoints here (same way as above, OUTSIDE main) ...
 
 if __name__ == '__main__':
     print("\n" + "="*60)
