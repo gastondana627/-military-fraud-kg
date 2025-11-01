@@ -1,4 +1,10 @@
 {
-  "builder": "dockerfile",
-  "buildPath": "./backend/Dockerfile"
+  "build": {
+    "builder": "dockerfile",
+    "buildPath": "./backend/Dockerfile"
+  },
+  "deploy": {
+    "startCommand": "python app.py",
+    "restartPolicyMaxRetries": 5
+  }
 }
