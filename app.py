@@ -9,10 +9,19 @@ from military_fraud_kg_implementation import (
     Relationship,
     RelationshipType
 )
+
 import json
 
-app = Flask(__name__)
-CORS(app)
+CORS(app, origins=[
+    "https://military-fraud-6mgjmwyy5-gastondana627s-projects.vercel.app",
+    "https://military-fraud-kg.vercel.app",
+    "http://localhost:3000"  # For local dev
+])
+
+
+
+
+
 
 # Initialize KG
 kg = MilitaryFraudKnowledgeGraph()
