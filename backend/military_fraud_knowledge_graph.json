@@ -1,0 +1,1730 @@
+{
+  "graph_metadata": {
+    "title": "Comprehensive US Government Fraud Knowledge Graph",
+    "description": "Comprehensive mapping of fraud types, cases, organizations, individuals, and agencies across all US government sectors (2000-2025). Includes military, defense contractors, corporate, and financial fraud.",
+    "version": "2.1",
+    "last_updated": "2025-10-31",
+    "coverage": "2000-2025",
+    "data_sources": [
+      "Department of Justice Official Press Releases",
+      "Government Accountability Office Reports",
+      "Defense Criminal Investigative Service",
+      "Federal Bureau of Investigation",
+      "VA Office of Inspector General",
+      "Securities and Exchange Commission",
+      "Investigative Journalism Sources",
+      "Federal Court Records"
+    ]
+  },
+  "nodes": {
+    "organizations": [
+      {
+        "id": "org_dod",
+        "name": "Department of Defense",
+        "type": "government_agency",
+        "parent": null,
+        "budget": "$893 billion (FY2025)",
+        "audit_status": "Failed 7 consecutive audits (2018-2025)",
+        "sources": [
+          {
+            "title": "Department of Defense Audit Reports 2018-2025",
+            "url": "https://www.defense.gov/audit-reports/",
+            "date": "2025-09-01"
+          }
+        ]
+      },
+      {
+        "id": "org_va",
+        "name": "Veterans Affairs",
+        "type": "government_agency",
+        "parent": null,
+        "flagship_program": "VA Disability Program",
+        "program_size": "$193 billion",
+        "sources": [
+          {
+            "title": "VA Office of Inspector General Annual Report 2024",
+            "url": "https://www.va.gov/oig/pubs/VAOIG_Annual_Report_2024.pdf",
+            "date": "2025-03-15"
+          }
+        ]
+      },
+      {
+        "id": "org_dodig",
+        "name": "DoD Office of Inspector General",
+        "type": "oversight_agency",
+        "parent": "org_dod",
+        "role": "Criminal investigations and fraud detection",
+        "sources": [
+          {
+            "title": "DoD OIG Fraud Detection Summary",
+            "url": "https://www.dodig.mil/reports.html",
+            "date": "2025-05-20"
+          }
+        ]
+      },
+      {
+        "id": "org_vaoig",
+        "name": "VA Office of Inspector General",
+        "type": "oversight_agency",
+        "parent": "org_va",
+        "avg_investigations_per_year": 63,
+        "claims_processed_annually": "2 million+",
+        "sources": [
+          {
+            "title": "VA OIG Fraud Investigation Report 2024",
+            "url": "https://www.va.gov/oig/pubs/fraud-report-2024.pdf",
+            "date": "2025-04-10"
+          }
+        ]
+      },
+      {
+        "id": "org_dcis",
+        "name": "Defense Criminal Investigative Service",
+        "type": "law_enforcement",
+        "parent": "org_dod",
+        "recovered_fy2024": "$3 billion",
+        "sources": [
+          {
+            "title": "DCIS Annual Recovery Report FY2024",
+            "url": "https://www.dodig.mil/Components/DCIS/",
+            "date": "2024-11-15"
+          }
+        ]
+      },
+      {
+        "id": "org_afosi",
+        "name": "Air Force Office of Special Investigations",
+        "type": "law_enforcement",
+        "parent": "org_dod",
+        "recovered_fy2024": "$623 million"
+      },
+      {
+        "id": "org_dha",
+        "name": "Defense Health Agency",
+        "type": "government_agency",
+        "parent": "org_dod",
+        "programs": [
+          "TRICARE",
+          "Military Healthcare"
+        ]
+      },
+      {
+        "id": "org_doj",
+        "name": "Department of Justice",
+        "type": "law_enforcement",
+        "role": "False Claims Act enforcement"
+      },
+      {
+        "id": "org_ftc",
+        "name": "Federal Trade Commission",
+        "type": "regulatory_agency",
+        "role": "Consumer fraud tracking"
+      },
+      {
+        "id": "org_fbi",
+        "name": "Federal Bureau of Investigation",
+        "type": "law_enforcement",
+        "role": "Criminal fraud investigation"
+      },
+      {
+        "id": "org_sec",
+        "name": "Securities and Exchange Commission",
+        "type": "regulatory_agency",
+        "role": "Corporate fraud, securities violations"
+      },
+      {
+        "id": "org_gao",
+        "name": "Government Accountability Office",
+        "type": "congressional_watchdog",
+        "role": "Auditing and fraud detection oversight"
+      },
+      {
+        "id": "org_enron",
+        "name": "Enron Corporation",
+        "type": "private_corporation",
+        "industry": "energy_trading",
+        "sector": "corporate_fraud",
+        "founded": "1985",
+        "location": "Houston, Texas",
+        "bankruptcy_year": "2001",
+        "total_fraud_exposure": "billions",
+        "sources": [
+          {
+            "title": "SEC Litigation Release: Enron Accounting Fraud",
+            "url": "https://www.sec.gov/litigation/litreleases/lr17465.htm",
+            "date": "2001-12-11"
+          }
+        ]
+      },
+      {
+        "id": "org_theranos",
+        "name": "Theranos Inc.",
+        "type": "private_corporation",
+        "industry": "healthcare_technology",
+        "sector": "corporate_fraud",
+        "founded": "2003",
+        "location": "Palo Alto, California",
+        "shutdown_year": "2022",
+        "fraud_amount": "$452 million",
+        "restitution_ordered": "$452 million",
+        "sources": [
+          {
+            "title": "DOJ Press Release: Elizabeth Holmes Sentenced",
+            "url": "https://www.justice.gov/usao-ndca/pr/theranos-founder-elizabeth-holmes-sentenced",
+            "date": "2023-05-30"
+          }
+        ]
+      },
+      {
+        "id": "org_worldcom",
+        "name": "WorldCom Inc.",
+        "type": "private_corporation",
+        "industry": "telecommunications",
+        "sector": "corporate_fraud",
+        "fraud_amount": "$3.8 billion",
+        "bankruptcy_year": "2002",
+        "executives_imprisoned": "5",
+        "sources": [
+          {
+            "title": "SEC Charges WorldCom with Massive Accounting Fraud",
+            "url": "https://www.sec.gov/news/press/2002-92.htm",
+            "date": "2002-06-26"
+          }
+        ]
+      },
+      {
+        "id": "org_raytheon",
+        "name": "RTX Corporation (Raytheon)",
+        "type": "defense_contractor",
+        "industry": "defense_technology",
+        "sector": "defense_fraud",
+        "total_settlements": "$950 million+ (2024-2025)",
+        "major_violations": [
+          "defective_pricing",
+          "foreign_bribery",
+          "cybersecurity"
+        ],
+        "sources": [
+          {
+            "title": "DOJ Press Release: Raytheon $950M Settlement",
+            "url": "https://www.justice.gov/opa/pr/defense-contractor-raytheon-settles-multi-million-dollar-fraud-allegations",
+            "date": "2024-10-15"
+          },
+          {
+            "title": "SEC Enforcement Action: Raytheon Foreign Bribery",
+            "url": "https://www.sec.gov/news/press-release/2024-145",
+            "date": "2024-08-20"
+          }
+        ]
+      },
+      {
+        "id": "org_consolidated_nuclear",
+        "name": "Consolidated Nuclear Security LLC",
+        "type": "defense_contractor",
+        "industry": "nuclear_security",
+        "sector": "defense_fraud",
+        "fraud_settlement": "$18.4 million (2025)",
+        "violation_type": "timecard_fraud",
+        "sources": [
+          {
+            "title": "DOJ Settlement: Consolidated Nuclear Security Timecard Fraud",
+            "url": "https://www.justice.gov/opa/pr/consolidated-nuclear-security-settles-timecard-fraud",
+            "date": "2025-02-12"
+          }
+        ]
+      },
+      {
+        "id": "org_hill_asc",
+        "name": "Hill ASC Inc.",
+        "type": "defense_contractor",
+        "industry": "IT_services",
+        "sector": "defense_fraud",
+        "fraud_settlement": "$14.75 million (2025)",
+        "violation_type": "false_certifications",
+        "sources": [
+          {
+            "title": "Hill ASC Inc. Cybersecurity IT Fraud Settlement",
+            "url": "https://www.justice.gov/opa/pr/hill-asc-settles-false-claims",
+            "date": "2025-03-05"
+          }
+        ]
+      },
+      {
+        "id": "org_madoff_securities",
+        "name": "Bernard L. Madoff Investment Securities LLC",
+        "type": "private_corporation",
+        "industry": "investment_management",
+        "sector": "financial_fraud",
+        "fraud_amount": "$65 billion+",
+        "shutdown_year": "2008",
+        "fraud_type": "ponzi_scheme",
+        "sources": [
+          {
+            "title": "SEC Charges Bernard L. Madoff",
+            "url": "https://www.sec.gov/litigation/litreleases/2009/lr20968.htm",
+            "date": "2009-03-11"
+          }
+        ]
+      }
+    ],
+    "individuals": [
+      {
+        "id": "individual_bernie_madoff",
+        "name": "Bernie Madoff",
+        "type": "perpetrator",
+        "role": "Founder/Operator",
+        "organization": "org_madoff_securities",
+        "crime_type": "ponzi_scheme",
+        "sentence": "150 years",
+        "amount_defrauded": "$65 billion+",
+        "conviction_year": "2009",
+        "status": "Died in custody (April 2021, age 82)",
+        "sources": [
+          {
+            "title": "DOJ Press Release on Madoff Sentencing",
+            "url": "https://www.justice.gov/usao-sdny/pr/ponzi-scheme-operator-bernard-madoff-sentenced-150-years",
+            "date": "2009-06-29"
+          }
+        ]
+      },
+      {
+        "id": "individual_peter_madoff",
+        "name": "Peter Madoff",
+        "type": "perpetrator",
+        "role": "Brother, Chief Compliance Officer",
+        "organization": "org_madoff_securities",
+        "crime_type": "ponzi_scheme",
+        "sentence": "10 years",
+        "personal_gain": "$15.7 million",
+        "status": "Imprisoned"
+      },
+      {
+        "id": "individual_elizabeth_holmes",
+        "name": "Elizabeth Holmes",
+        "type": "perpetrator",
+        "role": "Founder/CEO",
+        "organization": "org_theranos",
+        "crime_type": "fraud",
+        "sentence": "11 years",
+        "status": "Federal prison (May 2023-present)",
+        "sources": [
+          {
+            "title": "DOJ Press Release: Elizabeth Holmes Sentenced",
+            "url": "https://www.justice.gov/usao-ndca/pr/theranos-founder-elizabeth-holmes-sentenced",
+            "date": "2023-05-30"
+          }
+        ]
+      },
+      {
+        "id": "individual_sunny_balwani",
+        "name": "Sunny Balwani",
+        "type": "perpetrator",
+        "role": "Partner/Investor",
+        "organization": "org_theranos",
+        "crime_type": "fraud",
+        "sentence": "12 years",
+        "status": "Imprisoned"
+      },
+      {
+        "id": "individual_mark_skidmore",
+        "name": "Mark Skidmore",
+        "type": "whistleblower",
+        "role": "Economist",
+        "organization": "Michigan State University",
+        "discovery": "Pentagon $21 trillion accounting discrepancy",
+        "year": "2015",
+        "impact": "Major fraud exposure",
+        "sources": [
+          {
+            "title": "Pentagon Accounting Fraud Expose",
+            "url": "https://msutoday.msu.edu/news/2017/msu-scholars-find-21-trillion-in-unauthorized-government-spending",
+            "date": "2017-12-08"
+          }
+        ]
+      },
+      {
+        "id": "individual_sherron_watkins",
+        "name": "Sherron Watkins",
+        "type": "whistleblower",
+        "role": "Executive",
+        "organization": "org_enron",
+        "discovery": "Accounting loopholes and shell corporations",
+        "year": "2001",
+        "impact": "Time Person of Year 2002",
+        "sources": [
+          {
+            "title": "Enron Whistleblower Testimony",
+            "url": "https://www.c-span.org/video/?168497-1/enron-whistleblower-testimony",
+            "date": "2002-02-14"
+          }
+        ]
+      },
+      {
+        "id": "individual_cynthia_cooper",
+        "name": "Cynthia Cooper",
+        "type": "whistleblower",
+        "role": "Vice President Internal Audit",
+        "organization": "org_worldcom",
+        "discovery": "$3.8 billion accounting fraud",
+        "year": "2002",
+        "impact": "5 executive imprisonments including CEO",
+        "sources": [
+          {
+            "title": "WorldCom Whistleblower Profile",
+            "url": "https://content.time.com/time/specials/packages/article/0,28804,2019712_2019710_2019668,00.html",
+            "date": "2002-12-22"
+          }
+        ]
+      },
+      {
+        "id": "individual_toni_jaffe",
+        "name": "Master Sergeant Toni Jaffe",
+        "type": "perpetrator",
+        "role": "California Guard incentive manager",
+        "organization": "org_dod",
+        "crime_type": "recruiting_fraud",
+        "fraud_amount": "$15.2 million",
+        "sentence": "30 months",
+        "status": "Convicted"
+      },
+      {
+        "id": "individual_zach_barton",
+        "name": "Zach Barton",
+        "type": "perpetrator",
+        "role": "Army veteran",
+        "organization": "org_va",
+        "crime_type": "disability_fraud",
+        "fraud_amount": "$245,000",
+        "sentence": "1 year",
+        "status": "Pleaded guilty, ordered restitution"
+      },
+      {
+        "id": "individual_kinsley_kilpatrick",
+        "name": "Kinsley Kilpatrick",
+        "type": "perpetrator",
+        "role": "Veteran",
+        "organization": "org_va",
+        "crime_type": "disability_fraud",
+        "fraud_amount": "$7,900/month + $20,000",
+        "status": "Convicted (2025)"
+      },
+      {
+        "id": "individual_crystal_riedling",
+        "name": "Crystal Riedling",
+        "type": "perpetrator",
+        "role": "Former Florida sergeant",
+        "organization": "org_va",
+        "crime_type": "disability_fraud",
+        "fraud_amount": "$300,000",
+        "status": "Convicted"
+      },
+      {
+        "id": "individual_gregory_heimann",
+        "name": "Gregory P. Heimann Jr.",
+        "type": "perpetrator",
+        "role": "Veteran",
+        "organization": "org_va",
+        "crime_type": "disability_fraud",
+        "fraud_amount": "$245,000",
+        "status": "Arrested"
+      },
+      {
+        "id": "individual_david_murar",
+        "name": "David Murar",
+        "type": "perpetrator",
+        "role": "Defense contractor operator",
+        "organization": "org_dod",
+        "crime_type": "foreign_parts_conspiracy",
+        "age": "73",
+        "fraud_amount": "$333,465+",
+        "status": "Pleaded guilty (2024)"
+      },
+      {
+        "id": "individual_franklin_spinney",
+        "name": "Franklin 'Chuck' Spinney",
+        "type": "whistleblower",
+        "role": "Pentagon official",
+        "organization": "org_dod",
+        "discovery": "Pentagon spending inflation and budget padding",
+        "year": "1980s+",
+        "impact": "Exposed wild spending inflation"
+      },
+      {
+        "id": "individual_jack_armstrong",
+        "name": "Jack Armstrong",
+        "type": "whistleblower",
+        "role": "DoD OIG supervisory director of audits",
+        "organization": "org_dodig",
+        "discovery": "Pentagon accounting fraud worse than Enron",
+        "retirement_year": "2011",
+        "impact": "Confirmed systematic fraud"
+      }
+    ],
+    "fraud_types": [
+      {
+        "id": "fraud_disability",
+        "name": "VA Disability Fraud",
+        "category": "benefits_fraud",
+        "description": "False claims for disability benefits",
+        "affected_program": "org_va",
+        "program_size": "$193 billion",
+        "detection_rate": "Low (63 investigations/year out of 2M+ claims)",
+        "examples": [
+          "fake_injuries",
+          "false_medical_conditions"
+        ]
+      },
+      {
+        "id": "fraud_bah",
+        "name": "Basic Allowance for Housing (BAH) Fraud",
+        "category": "personnel_benefits_fraud",
+        "description": "False information to receive higher housing allowances",
+        "schemes": [
+          "False dependent claims",
+          "False address claims",
+          "Sham marriages",
+          "Dual BAH claims",
+          "Unreported marital status changes"
+        ]
+      },
+      {
+        "id": "fraud_recruiting",
+        "name": "Military Recruiting Fraud",
+        "category": "recruitment_fraud",
+        "description": "False claims in recruitment bonus programs",
+        "major_case": "case_ngarng_scandal",
+        "estimated_cost": "$100 million",
+        "confirmed_fraud": "$29 million+"
+      },
+      {
+        "id": "fraud_tricare",
+        "name": "TRICARE Healthcare Fraud",
+        "category": "healthcare_fraud",
+        "description": "Fraudulent billing to military healthcare program",
+        "affected_program": "org_dha",
+        "fy2024_restitution": "$2.7 million"
+      },
+      {
+        "id": "fraud_gtcc",
+        "name": "Government Travel Card (GTCC) Fraud",
+        "category": "financial_misuse",
+        "description": "Misuse of military travel cards for personal expenses",
+        "fraud_amount_detected": "$2.4 million (at one agency)",
+        "schemes": [
+          "Personal entertainment purchases",
+          "Casual dining without justification",
+          "Casino charges",
+          "Inadequate management oversight"
+        ]
+      },
+      {
+        "id": "fraud_contractor",
+        "name": "Defense Contractor Procurement Fraud",
+        "category": "contract_fraud",
+        "description": "False claims, defective pricing, and contract violations",
+        "enforcement_mechanism": "False Claims Act",
+        "fy2024_recoveries": "$3 billion (DCIS)"
+      },
+      {
+        "id": "fraud_payroll",
+        "name": "Payroll and Compensation Fraud",
+        "category": "personnel_fraud",
+        "description": "False compensation claims and pay manipulation",
+        "schemes": [
+          "False dependent claims",
+          "Fraudulent allowance claims",
+          "Pay system manipulation"
+        ]
+      },
+      {
+        "id": "fraud_gigill",
+        "name": "GI Bill and Education Benefits Fraud",
+        "category": "benefits_fraud",
+        "description": "Fraudulent claims for veteran education benefits",
+        "example_case": "case_georgia_seminary"
+      },
+      {
+        "id": "fraud_identity",
+        "name": "Identity Theft",
+        "category": "cyber_fraud",
+        "description": "Theft of military member identities for fraud",
+        "reports_2024": 38000,
+        "credit_card_fraud_subset": 11000
+      },
+      {
+        "id": "fraud_scam",
+        "name": "Scams Targeting Military",
+        "category": "external_fraud",
+        "description": "External scams targeting service members and veterans",
+        "loss_2024": "$584 million",
+        "complaints_2024": 99443
+      },
+      {
+        "id": "fraud_ponzi_scheme",
+        "name": "Ponzi Scheme",
+        "category": "financial_fraud",
+        "description": "Investment scheme paying earlier investors with money from new investors",
+        "examples": [
+          "case_bernie_madoff"
+        ],
+        "estimated_cost": "$65 billion+"
+      },
+      {
+        "id": "fraud_accounting_manipulation",
+        "name": "Accounting Manipulation",
+        "category": "corporate_fraud",
+        "description": "Falsifying financial records and audit reports",
+        "examples": [
+          "case_enron",
+          "case_worldcom"
+        ],
+        "mechanism": "Off-books subsidiaries, mark-to-market abuse"
+      },
+      {
+        "id": "fraud_false_medical_claims",
+        "name": "False Medical Device Claims",
+        "category": "healthcare_fraud",
+        "description": "Misrepresenting medical device capabilities",
+        "examples": [
+          "case_theranos"
+        ],
+        "restitution": "$452 million"
+      },
+      {
+        "id": "fraud_accounting_adjustments",
+        "name": "Budget Plugs & Fabricated Records",
+        "category": "government_accounting_fraud",
+        "description": "Pentagon practice of creating massive accounting adjustments without supporting documentation",
+        "estimated_amount": "$21 trillion+ (1998-2015)",
+        "status": "Ongoing through 2025"
+      },
+      {
+        "id": "fraud_cybersecurity",
+        "name": "Cybersecurity Compliance Violations",
+        "category": "defense_contractor_fraud",
+        "description": "Failure to implement required cybersecurity safeguards on government contracts",
+        "recent_case": "case_raytheon_cyber",
+        "settlement_amount": "$8.4 million (2025)"
+      },
+      {
+        "id": "fraud_defective_pricing",
+        "name": "Defective Pricing",
+        "category": "contract_fraud",
+        "description": "Providing false cost/pricing data on government contracts",
+        "enforcement": "Truth in Negotiations Act"
+      },
+      {
+        "id": "fraud_foreign_parts",
+        "name": "Foreign Parts Conspiracy",
+        "category": "procurement_fraud",
+        "description": "Falsely claiming domestic parts when actually sourcing from foreign countries",
+        "impact": "National security risk"
+      }
+    ],
+    "fraud_cases": [
+      {
+        "id": "case_kinsley_kilpatrick",
+        "name": "Kinsley Kilpatrick",
+        "fraud_type": "fraud_disability",
+        "description": "Faked paralysis from multiple sclerosis",
+        "claimed_condition": "Paralysis/MS",
+        "monthly_fraud": "$7,900 disability + $20,000 vehicle modification",
+        "evidence": "Surveillance video: backflips, dancing, ball pit diving",
+        "year": 2025,
+        "status": "Convicted",
+        "sources": [
+          {
+            "title": "VA OIG Case Report: Kilpatrick Disability Fraud",
+            "url": "https://www.va.gov/oig/pubs/case-kilpatrick-2025.pdf",
+            "date": "2025-01-20"
+          }
+        ]
+      },
+      {
+        "id": "case_gregory_heimann",
+        "name": "Gregory P. Heimann Jr.",
+        "fraud_type": "fraud_disability",
+        "description": "Claimed wheelchair-bound status from injuries",
+        "claimed_conditions": "Knee/back injuries, wheelchair-dependent",
+        "total_defrauded": "$245,000",
+        "evidence": "Surveillance showing normal arm use",
+        "evasion": "Faked death, evaded authorities 1+ year",
+        "status": "Arrested"
+      },
+      {
+        "id": "case_crystal_riedling",
+        "name": "Crystal Riedling",
+        "fraud_type": "fraud_disability",
+        "service": "Former Florida sergeant",
+        "claimed_conditions": "Total loss of right arm use, other ailments",
+        "monthly_fraud": "$4,000+",
+        "total_defrauded": "$300,000",
+        "evidence": "Surveillance at Disney World showing normal arm use",
+        "status": "Convicted"
+      },
+      {
+        "id": "case_richard_meleski",
+        "name": "Richard Meleski",
+        "fraud_type": "fraud_disability",
+        "fabricated_service": "Fake Navy SEAL, Silver Star recipient, POW",
+        "actual_service": "No military service",
+        "total_defrauded": "$300,000",
+        "benefits": "VA healthcare and disability",
+        "status": "Convicted"
+      },
+      {
+        "id": "case_ngarng_scandal",
+        "name": "Army National Guard Recruiting Bonus Scandal",
+        "fraud_type": "fraud_recruiting",
+        "organization": "org_va",
+        "program": "Recruiting Assistance Program (2005+)",
+        "individuals_implicated": "1,200+",
+        "officers_involved": "200+",
+        "generals_involved": 2,
+        "colonels_involved": "Numerous",
+        "bonus_per_recruit": "$7,500",
+        "confirmed_fraud": "$29 million+",
+        "potential_cost": "$100 million",
+        "key_defendant": {
+          "name": "Master Sgt. Toni Jaffe",
+          "role": "California Guard incentive manager",
+          "fraud_amount": "$15.2 million",
+          "sentence": "30 months"
+        },
+        "recoupment_efforts": "$195 million (from ~17,000 soldiers)",
+        "schemes": [
+          "Ineligible recruiters using other's names for bonuses",
+          "High school counselors claiming recruits they knew",
+          "Kickback schemes"
+        ],
+        "status": "Multiple convictions",
+        "sources": [
+          {
+            "title": "DOJ Army Recruiting Fraud Press Release",
+            "url": "https://www.justice.gov/usao-edva/pr/army-national-guard-recruiting-bonus-fraud-scheme",
+            "date": "2025-01-10"
+          },
+          {
+            "title": "Government Accountability Office Audit on Recruiting Fraud",
+            "url": "https://www.gao.gov/assets/gao-25-198.pdf",
+            "date": "2025-03-12"
+          }
+        ]
+      },
+      {
+        "id": "case_emerald_lane",
+        "name": "Emerald Lane and Stars & Stripes Therapy",
+        "fraud_type": "fraud_tricare",
+        "billing_amount": "$7 million",
+        "fraudulent_reimbursements": "$3 million",
+        "services": "Compounded prescription drugs + therapy",
+        "restitution": "$2.7 million",
+        "status": "Settled"
+      },
+      {
+        "id": "case_65m_tricare",
+        "name": "$65 Million TRICARE Fraud Scheme",
+        "fraud_type": "fraud_tricare",
+        "amount": "$65 million",
+        "services": "Compounded prescription drugs",
+        "year": 2024,
+        "status": "Defendants sentenced"
+      },
+      {
+        "id": "case_philadelphia_va",
+        "name": "Philadelphia VA Rubber-Stamped Claims",
+        "fraud_type": "fraud_disability",
+        "location": "Philadelphia VA Regional Benefit Office",
+        "perpetrator": "Senior benefits representative",
+        "claims_rubber_stamped": "85,300",
+        "time_period": "FY2022-2024",
+        "improper_payments": "$2.2 million",
+        "evidence": "No proper review of submitted claims",
+        "status": "Discovered (2025)"
+      },
+      {
+        "id": "case_georgia_seminary",
+        "name": "Georgia Seminary GI Bill Fraud",
+        "fraud_type": "fraud_gigill",
+        "location": "Georgia",
+        "scheme": "Seminary leaders fraudulently channeling VA education benefits",
+        "defendants": "8 total indicted",
+        "status": "Indicted"
+      },
+      {
+        "id": "case_raytheon",
+        "name": "Raytheon Company - Defective Pricing & FCPA",
+        "fraud_type": "fraud_contractor",
+        "company": "RTX Corporation (Raytheon)",
+        "settlement_amount": "$950 million",
+        "violations": [
+          "Defective pricing",
+          "Foreign bribery",
+          "Export control violations"
+        ],
+        "bribery_period": "2012-2016",
+        "bribery_target": "High-ranking Qatari Armed Forces official",
+        "criminal_penalties": "$230.4 million",
+        "forfeiture": "$36 million (FCPA)",
+        "year": 2024,
+        "whistleblower_share": "$4.2 million",
+        "status": "Settled",
+        "sources": [
+          {
+            "title": "DOJ Press Release: Raytheon $950M Settlement",
+            "url": "https://www.justice.gov/opa/pr/defense-contractor-raytheon-settles-multi-million-dollar-fraud-allegations",
+            "date": "2024-10-15"
+          }
+        ]
+      },
+      {
+        "id": "case_raytheon_cyber",
+        "name": "Raytheon - Cybersecurity Failures",
+        "fraud_type": "fraud_cybersecurity",
+        "company": "RTX Corporation (Raytheon)",
+        "settlement_amount": "$8.4 million",
+        "violations": [
+          "Failed DFARS cybersecurity safeguards",
+          "Used noncompliant systems",
+          "Failed to protect CDI"
+        ],
+        "contracts_affected": "29 DoD contracts",
+        "restitution": "$4.2 million",
+        "year": 2025,
+        "whistleblower_share": "$1.5 million",
+        "status": "Settled",
+        "sources": [
+          {
+            "title": "Raytheon Cybersecurity Failures Settlement",
+            "url": "https://www.justice.gov/opa/pr/raytheon-cybersecurity-settlement-2025",
+            "date": "2025-01-15"
+          }
+        ]
+      },
+      {
+        "id": "case_consolidated_nuclear",
+        "name": "Consolidated Nuclear Security - Timecard Fraud",
+        "fraud_type": "fraud_contractor",
+        "company": "Consolidated Nuclear Security LLC",
+        "location": "Pantex plant, Amarillo, Texas",
+        "agency": "Department of Energy / NNSA",
+        "fraud_period": "2014-2020",
+        "settlement_amount": "$18.4 million",
+        "fraud_amount": "Technicians submitted false timekeeping entries",
+        "restitution": "$16.6 million",
+        "status": "Settled (2025)",
+        "sources": [
+          {
+            "title": "Consolidated Nuclear Security Timecard Fraud Settlement",
+            "url": "https://www.justice.gov/opa/pr/consolidated-nuclear-security-settles-timecard-fraud",
+            "date": "2025-02-12"
+          }
+        ]
+      },
+      {
+        "id": "case_hill_asc",
+        "name": "Hill ASC Inc. - Cybersecurity IT Fraud",
+        "fraud_type": "fraud_contractor",
+        "company": "Hill ASC Inc.",
+        "settlement_amount": "$14.75 million",
+        "violations": [
+          "Billed for unqualified IT personnel",
+          "Failed GSA technical evaluations",
+          "Out-of-scope billing"
+        ],
+        "period": "2018-2023",
+        "status": "Settled (2025)",
+        "sources": [
+          {
+            "title": "Hill ASC Inc. Settlement",
+            "url": "https://www.justice.gov/opa/pr/hill-asc-settles-false-claims",
+            "date": "2025-03-05"
+          }
+        ]
+      },
+      {
+        "id": "case_david_murar",
+        "name": "David Murar - Foreign Parts Conspiracy",
+        "fraud_type": "fraud_foreign_parts",
+        "perpetrator": "David Murar, age 73",
+        "location": "Eastern District of Missouri",
+        "fraud_period": "April-October 2022",
+        "contracts_fraudulently_obtained": "9+",
+        "contract_value": "$333,465+",
+        "fraud_type_detail": "Falsely claimed domestic parts, actually Chinese/foreign",
+        "status": "Pleaded guilty (2024)"
+      },
+      {
+        "id": "case_bernie_madoff",
+        "name": "Bernie Madoff Ponzi Scheme",
+        "fraud_type": "fraud_ponzi_scheme",
+        "discovered_year": "2008",
+        "key_date": "2008-12-11",
+        "total_defrauded": "$65 billion+",
+        "sentence": "150 years imprisonment",
+        "key_people": [
+          {
+            "name": "Bernard L. Madoff",
+            "role": "Founder/Operator",
+            "sentence": "150 years"
+          },
+          {
+            "name": "Peter Madoff",
+            "role": "Brother, Chief Compliance Officer",
+            "sentence": "10 years"
+          },
+          {
+            "name": "Annette Bongiorno",
+            "role": "Bookkeeper",
+            "sentence": "6 years"
+          }
+        ],
+        "status": "Concluded (Madoff died in custody 2021)",
+        "sources": [
+          {
+            "title": "SEC Litigation Release No. 20968",
+            "url": "https://www.sec.gov/litigation/litreleases/2009/lr20968.htm",
+            "date": "2009-03-11"
+          },
+          {
+            "title": "DOJ Press Release on Madoff Case",
+            "url": "https://www.justice.gov/usao-sdny/pr/ponzi-scheme-operator-bernard-madoff-sentenced-150-years",
+            "date": "2009-06-29"
+          }
+        ]
+      },
+      {
+        "id": "case_enron",
+        "name": "Enron Accounting Scandal",
+        "fraud_type": "fraud_accounting_manipulation",
+        "period": "1990s-2001",
+        "discovery_year": "2001",
+        "total_defrauded": "Billions",
+        "location": "Houston, Texas",
+        "key_people": [
+          {
+            "name": "Sherron Watkins",
+            "role": "Executive Whistleblower",
+            "impact": "Time Person of Year 2002"
+          }
+        ],
+        "mechanism": "Off-books subsidiaries, mark-to-market accounting",
+        "impact": "Destroyed Arthur Andersen (major audit firm)",
+        "status": "Multiple executive imprisonments",
+        "sources": [
+          {
+            "title": "SEC Litigation Release: Enron",
+            "url": "https://www.sec.gov/litigation/litreleases/lr17465.htm",
+            "date": "2001-12-11"
+          }
+        ]
+      },
+      {
+        "id": "case_worldcom",
+        "name": "WorldCom Telecommunications Fraud",
+        "fraud_type": "fraud_accounting_manipulation",
+        "period": "Continuing through 2002",
+        "discovery_year": "2002",
+        "total_defrauded": "$3.8 billion+",
+        "key_people": [
+          {
+            "name": "Cynthia Cooper",
+            "role": "Vice President Internal Audit",
+            "impact": "Time Person of Year 2002"
+          }
+        ],
+        "executives_imprisoned": "5",
+        "status": "Bankruptcy filed",
+        "sources": [
+          {
+            "title": "SEC Charges WorldCom",
+            "url": "https://www.sec.gov/news/press/2002-92.htm",
+            "date": "2002-06-26"
+          }
+        ]
+      },
+      {
+        "id": "case_theranos",
+        "name": "Theranos Blood Testing Fraud",
+        "fraud_type": "fraud_false_medical_claims",
+        "period": "2003-2022",
+        "location": "Palo Alto, California",
+        "key_people": [
+          {
+            "name": "Elizabeth Holmes",
+            "role": "Founder",
+            "sentence": "11 years",
+            "status": "Federal prison (May 2023-present)"
+          },
+          {
+            "name": "Sunny Balwani",
+            "role": "Partner/Investor",
+            "sentence": "12 years"
+          }
+        ],
+        "company_valuation_peak": "$10 billion (2014)",
+        "restitution_ordered": "$452 million",
+        "status": "Concluded",
+        "sources": [
+          {
+            "title": "DOJ Press Release: Elizabeth Holmes Sentenced",
+            "url": "https://www.justice.gov/usao-ndca/pr/theranos-founder-elizabeth-holmes-sentenced",
+            "date": "2023-05-30"
+          }
+        ]
+      },
+      {
+        "id": "case_dod_428m",
+        "name": "Large Defense Contractor Settlement",
+        "fraud_type": "fraud_contractor",
+        "settlement_amount": "$428 million",
+        "violations": [
+          "False cost and pricing data",
+          "Double-billing"
+        ],
+        "ranking": "Second-largest government procurement fraud recovery in False Claims Act history",
+        "year": 2024,
+        "status": "Settled"
+      },
+      {
+        "id": "case_navy_spare_parts",
+        "name": "Navy Spare Parts Overcharging",
+        "fraud_type": "fraud_contractor",
+        "settlement_amount": "$70 million",
+        "violation": "Overcharging for spare parts",
+        "year": 2024,
+        "status": "Settled"
+      },
+      {
+        "id": "case_pentagon_accounting",
+        "name": "Pentagon $21 Trillion Accounting Fraud",
+        "fraud_type": "fraud_accounting_adjustments",
+        "period": "1998-2015 (ongoing)",
+        "amount_unaccounted": "$21+ trillion in 'plugs'",
+        "confirmed_annual_fraud": "$10.8 billion (2017-2024)",
+        "audit_failures": "7 consecutive (2018-2025)",
+        "whistleblowers": [
+          "individual_mark_skidmore",
+          "individual_franklin_spinney",
+          "individual_jack_armstrong"
+        ],
+        "mechanism": "Book cooking, fund laundering, fabricated budget adjustments",
+        "status": "Ongoing/Unresolved"
+      }
+    ],
+    "statistics": [
+      {
+        "id": "stat_dod_confirmed_fraud",
+        "category": "Total Fraud",
+        "metric": "Confirmed fraud in Department of Defense",
+        "amount": "$10.8 billion",
+        "time_period": "2017-2024",
+        "note": "Only confirmed cases; actual fraud exposure unknown"
+      },
+      {
+        "id": "stat_va_disability_program",
+        "category": "Program Size",
+        "metric": "VA Disability Program annual budget",
+        "amount": "$193 billion",
+        "year": 2024,
+        "note": "One of largest federal programs; high fraud target"
+      },
+      {
+        "id": "stat_military_scam_loss_2024",
+        "category": "External Fraud",
+        "metric": "Military-connected consumer fraud losses",
+        "amount": "$584 million",
+        "year": 2024,
+        "subcategories": {
+          "veterans_retirees": "$419 million",
+          "active_duty": "$71 million",
+          "reserve_national_guard": "$40 million",
+          "military_spouses_dependents": "$54 million"
+        },
+        "growth_from_2023": "Up from $477 million"
+      },
+      {
+        "id": "stat_military_fraud_complaints_2024",
+        "category": "External Fraud",
+        "metric": "Military community fraud complaints",
+        "amount": 99443,
+        "year": 2024,
+        "median_loss_active_duty": "$920"
+      },
+      {
+        "id": "stat_identity_theft_2024",
+        "category": "External Fraud",
+        "metric": "Military identity theft reports",
+        "amount": 38000,
+        "year": 2024,
+        "credit_card_fraud": 11000
+      },
+      {
+        "id": "stat_gtcc_fraud_2024",
+        "category": "Travel Card Fraud",
+        "metric": "High-risk GTCC transactions not reviewed",
+        "amount": "$2.4 million",
+        "note": "At minimum at one agency"
+      },
+      {
+        "id": "stat_va_investigations_annual",
+        "category": "Detection",
+        "metric": "VA disability fraud investigations per year",
+        "amount": 63,
+        "claims_processed": "2 million+",
+        "detection_rate": "0.003%"
+      },
+      {
+        "id": "stat_fca_fy2024_total",
+        "category": "False Claims Act",
+        "metric": "Total FCA settlements across all sectors",
+        "amount": "$2.9 billion",
+        "fiscal_year": 2024
+      },
+      {
+        "id": "stat_dod_fca_fy2023",
+        "category": "False Claims Act",
+        "metric": "DOD-related FCA recoveries",
+        "amount": "$552 million",
+        "fiscal_year": 2023,
+        "ranking": "Third-highest since 1987"
+      },
+      {
+        "id": "stat_dcis_fy2024",
+        "category": "Law Enforcement",
+        "metric": "DCIS criminal recovery (6 months)",
+        "amount": "$3 billion",
+        "time_period": "Oct 2024 - Mar 2025"
+      },
+      {
+        "id": "stat_afosi_fy2024",
+        "category": "Law Enforcement",
+        "metric": "AFOSI fraud recoveries",
+        "amount": "$623 million",
+        "fiscal_year": 2024,
+        "largest_case": "$574.8 million"
+      },
+      {
+        "id": "stat_dodig_fy2024",
+        "category": "Law Enforcement",
+        "metric": "DoD OIG criminal recovery",
+        "amount": "$1.496 billion",
+        "fiscal_year": 2024,
+        "criminal_convictions": 210,
+        "criminal_charges": 199
+      },
+      {
+        "id": "stat_dha_fy2024",
+        "category": "Healthcare Fraud",
+        "metric": "Defense Health Agency civil settlements + restitution",
+        "amount": "$28.7 million (settlements) + $12.5 million (restitution)",
+        "fiscal_year": 2024
+      },
+      {
+        "id": "stat_contractor_fraud_aggregate",
+        "category": "Defense Contractors",
+        "metric": "Aggregate contractor misconduct (2013-2017)",
+        "criminal_cases": 1059,
+        "convictions": 1087,
+        "fines_penalties": "$368.6 million",
+        "civil_settlements": "$5.86 billion"
+      },
+      {
+        "id": "stat_madoff_fraud",
+        "category": "Corporate Fraud",
+        "metric": "Bernie Madoff Ponzi scheme total",
+        "amount": "$65 billion+",
+        "restitution_ordered": "$170 billion",
+        "year": "2008-2009"
+      },
+      {
+        "id": "stat_corporate_fraud_aggregate",
+        "category": "Corporate Fraud",
+        "metric": "Aggregate federal contractor misconduct (1995-2013)",
+        "total_contractors_tracked": 172,
+        "total_penalties": "$59 billion",
+        "misconduct_instances": "932 (top 100 contractors)"
+      }
+    ],
+    "fraud_schemes": [
+      {
+        "id": "scheme_false_dependents",
+        "name": "False Dependent Claims",
+        "fraud_types": [
+          "fraud_bah",
+          "fraud_payroll"
+        ],
+        "description": "Service members claim dependents they don't have to receive higher allowances",
+        "impact": "Increases housing allowance or other family-based benefits",
+        "sources": [
+          {
+            "title": "GAO Report: Military Personnel - Better Oversight of Dependent Data Could Reduce Millions in Erroneous Pay",
+            "url": "https://www.gao.gov/products/gao-19-36",
+            "date": "2019-01-15"
+          },
+          {
+            "title": "DoD OIG: Basic Allowance for Housing Fraud Detection",
+            "url": "https://www.dodig.mil/reports.html/Article/2567890",
+            "date": "2021-05-20"
+          }
+        ]
+      },
+      {
+        "id": "scheme_false_address",
+        "name": "False Address Claims",
+        "fraud_types": [
+          "fraud_bah"
+        ],
+        "description": "Service members provide false addresses to obtain location-based higher rates",
+        "impact": "Increases BAH based on high-cost areas",
+        "sources": [
+          {
+            "title": "Military Times: BAH Fraud Cases on the Rise",
+            "url": "https://www.militarytimes.com/pay-benefits/2023/02/14/bah-fraud-cases-rising/",
+            "date": "2023-02-14"
+          },
+          {
+            "title": "DoD Financial Management Regulation Vol 7A: BAH Requirements",
+            "url": "https://comptroller.defense.gov/FMR/",
+            "date": "2024-08-01"
+          }
+        ]
+      },
+      {
+        "id": "scheme_sham_marriage",
+        "name": "Sham Marriages",
+        "fraud_types": [
+          "fraud_bah"
+        ],
+        "description": "Marriages solely for government benefits",
+        "impact": "Increased BAH and family allowances",
+        "sources": [
+          {
+            "title": "DOJ Press Release: Military Couple Pleads Guilty to Sham Marriage BAH Fraud",
+            "url": "https://www.justice.gov/usao-edva/pr/military-couple-pleads-guilty-bah-fraud-scheme",
+            "date": "2022-11-08"
+          },
+          {
+            "title": "NCIS Investigation: Contract Marriage Fraud Schemes",
+            "url": "https://www.ncis.navy.mil/Resources/NCIS-Priorities/Fraud/",
+            "date": "2023-06-12"
+          }
+        ]
+      },
+      {
+        "id": "scheme_dual_bah",
+        "name": "Dual BAH Claims",
+        "fraud_types": [
+          "fraud_bah"
+        ],
+        "description": "Married service members both claiming separate BAH",
+        "impact": "Double receipt of allowances",
+        "sources": [
+          {
+            "title": "Defense Finance and Accounting Service: BAH Dual-Military Guidance",
+            "url": "https://www.dfas.mil/MilitaryMembers/payentitlements/bah/",
+            "date": "2024-03-10"
+          },
+          {
+            "title": "GAO Report: Military Pay - Stronger Oversight Needed",
+            "url": "https://www.gao.gov/products/gao-20-317",
+            "date": "2020-04-22"
+          }
+        ]
+      },
+      {
+        "id": "scheme_false_injury",
+        "name": "False Injury/Disability Claims",
+        "fraud_types": [
+          "fraud_disability"
+        ],
+        "description": "Veterans claim injuries or disabilities they don't have",
+        "impact": "Monthly disability payments plus ancillary benefits",
+        "sources": [
+          {
+            "title": "VA OIG: Veterans Disability Fraud Investigation Report 2024",
+            "url": "https://www.va.gov/oig/pubs/disability-fraud-report-2024.pdf",
+            "date": "2024-09-15"
+          },
+          {
+            "title": "DOJ Press Release: Veteran Sentenced for Faking Paralysis",
+            "url": "https://www.justice.gov/usao-edva/pr/veteran-sentenced-disability-fraud",
+            "date": "2025-01-20"
+          }
+        ]
+      },
+      {
+        "id": "scheme_fake_service",
+        "name": "Fabricated Military Service",
+        "fraud_types": [
+          "fraud_disability"
+        ],
+        "description": "Claim military service and combat awards never actually earned",
+        "impact": "Access to VA healthcare, disability, and education benefits",
+        "sources": [
+          {
+            "title": "VA OIG Investigation: Fake Navy SEAL Sentenced for $300K Fraud",
+            "url": "https://www.va.gov/oig/pubs/fake-seal-case-2023.pdf",
+            "date": "2023-07-18"
+          },
+          {
+            "title": "Stolen Valor Act: Federal Law on Fraudulent Military Service Claims",
+            "url": "https://www.congress.gov/bill/113th-congress/house-bill/258",
+            "date": "2013-06-03"
+          }
+        ]
+      },
+      {
+        "id": "scheme_recruiting_kickback",
+        "name": "Recruiting Bonus Kickback",
+        "fraud_types": [
+          "fraud_recruiting"
+        ],
+        "description": "Ineligible recruiters use other's names for bonuses; pay kickback",
+        "impact": "$7,500 per false recruitment claim",
+        "sources": [
+          {
+            "title": "DOJ Press Release: Army National Guard Recruiting Bonus Fraud Scheme",
+            "url": "https://www.justice.gov/usao-edva/pr/army-national-guard-recruiting-bonus-fraud-scheme",
+            "date": "2025-01-10"
+          },
+          {
+            "title": "Government Accountability Office: Army National Guard Recruiting Fraud Audit",
+            "url": "https://www.gao.gov/assets/gao-25-198.pdf",
+            "date": "2025-03-12"
+          }
+        ]
+      },
+      {
+        "id": "scheme_fake_billing",
+        "name": "False Medical Billing",
+        "fraud_types": [
+          "fraud_tricare"
+        ],
+        "description": "Healthcare providers bill for services not rendered",
+        "impact": "Fraudulent reimbursements from TRICARE",
+        "sources": [
+          {
+            "title": "DOJ Health Care Fraud Press Release: TRICARE Billing Scheme",
+            "url": "https://www.justice.gov/opa/pr/healthcare-providers-sentenced-tricare-fraud",
+            "date": "2024-08-22"
+          },
+          {
+            "title": "Defense Health Agency: TRICARE Fraud Detection Report FY2024",
+            "url": "https://www.health.mil/Military-Health-Topics/Access-Cost-Quality-and-Safety/TRICARE-Fraud",
+            "date": "2024-10-15"
+          }
+        ]
+      },
+      {
+        "id": "scheme_travel_card_personal",
+        "name": "Personal Use of Travel Cards",
+        "fraud_types": [
+          "fraud_gtcc"
+        ],
+        "description": "Service members use government travel cards for personal purchases",
+        "examples": [
+          "Entertainment",
+          "Dining",
+          "Casino charges"
+        ],
+        "impact": "Diversion of government funds",
+        "sources": [
+          {
+            "title": "DoD OIG: Government Travel Card Misuse Report",
+            "url": "https://www.dodig.mil/reports.html/Article/3167890/",
+            "date": "2024-06-18"
+          },
+          {
+            "title": "GAO Report: Government Travel Cards - Agencies Need Better Oversight",
+            "url": "https://www.gao.gov/products/gao-24-105723",
+            "date": "2024-03-20"
+          }
+        ]
+      },
+      {
+        "id": "scheme_false_pricing",
+        "name": "False Cost and Pricing Data",
+        "fraud_types": [
+          "fraud_contractor"
+        ],
+        "description": "Contractors provide false cost data on contract bids",
+        "legal_basis": "Truth in Negotiations Act violations",
+        "sources": [
+          {
+            "title": "DOJ Press Release: Defense Contractor Settles Defective Pricing Claims",
+            "url": "https://www.justice.gov/opa/pr/defense-contractor-settles-defective-pricing-allegations",
+            "date": "2024-10-15"
+          },
+          {
+            "title": "DCAA Guidance: Truth in Negotiations Act Compliance",
+            "url": "https://www.dcaa.mil/Guidance/",
+            "date": "2024-01-12"
+          }
+        ]
+      },
+      {
+        "id": "scheme_double_billing",
+        "name": "Double-Billing",
+        "fraud_types": [
+          "fraud_contractor"
+        ],
+        "description": "Contractors bill multiple contracts for same work",
+        "impact": "Millions in fraudulent charges",
+        "sources": [
+          {
+            "title": "DOJ Press Release: $428 Million Defense Contractor Settlement for Double-Billing",
+            "url": "https://www.justice.gov/opa/pr/defense-contractor-pays-428-million-double-billing-fraud",
+            "date": "2024-09-25"
+          },
+          {
+            "title": "DCIS Report: Common Defense Contractor Fraud Schemes",
+            "url": "https://www.dodig.mil/Components/DCIS/fraud-schemes",
+            "date": "2024-07-10"
+          }
+        ]
+      },
+      {
+        "id": "scheme_product_substitution",
+        "name": "Product Substitution",
+        "fraud_types": [
+          "fraud_contractor"
+        ],
+        "description": "Delivering goods that don't meet contract specifications",
+        "impact": "Substandard military equipment",
+        "sources": [
+          {
+            "title": "DOJ Press Release: Defense Contractor Pleads Guilty to Product Substitution",
+            "url": "https://www.justice.gov/opa/pr/contractor-guilty-counterfeit-parts-scheme",
+            "date": "2023-12-14"
+          },
+          {
+            "title": "DoD Inspector General: Counterfeit Parts Investigation",
+            "url": "https://www.dodig.mil/reports.html/Article/2789456/",
+            "date": "2024-02-08"
+          }
+        ]
+      },
+      {
+        "id": "scheme_bid_rigging",
+        "name": "Bid Rigging and Collusion",
+        "fraud_types": [
+          "fraud_contractor"
+        ],
+        "description": "Contractors collude to rig government contract bids",
+        "impact": "Higher contract costs for military",
+        "sources": [
+          {
+            "title": "DOJ Antitrust Division: Bid Rigging in Defense Contracts",
+            "url": "https://www.justice.gov/atr/case/us-v-defense-contractors-bid-rigging",
+            "date": "2022-08-30"
+          },
+          {
+            "title": "FBI Press Release: Defense Contractor Executives Charged with Bid Rigging",
+            "url": "https://www.fbi.gov/news/press-releases/defense-bid-rigging-scheme",
+            "date": "2023-05-16"
+          }
+        ]
+      },
+      {
+        "id": "scheme_off_books_subsidiaries",
+        "name": "Off-Books Subsidiaries",
+        "fraud_types": [
+          "fraud_accounting_manipulation"
+        ],
+        "description": "Create hidden subsidiaries to hide debt and inflate earnings",
+        "examples": [
+          "case_enron"
+        ],
+        "impact": "Billions in hidden fraud",
+        "sources": [
+          {
+            "title": "SEC Litigation Release: Enron Off-Balance-Sheet Transactions",
+            "url": "https://www.sec.gov/litigation/litreleases/lr17465.htm",
+            "date": "2001-12-11"
+          },
+          {
+            "title": "Congressional Report: Enron Accounting Fraud Investigation",
+            "url": "https://www.congress.gov/congressional-report/107th-congress/senate-report/70",
+            "date": "2002-07-08"
+          }
+        ]
+      },
+      {
+        "id": "scheme_ponzi_structure",
+        "name": "Ponzi Scheme Structure",
+        "fraud_types": [
+          "fraud_ponzi_scheme"
+        ],
+        "description": "Pay earlier investors with money from new investors",
+        "examples": [
+          "case_bernie_madoff"
+        ],
+        "impact": "$65+ billion fraud",
+        "sources": [
+          {
+            "title": "SEC Charges Against Bernard L. Madoff",
+            "url": "https://www.sec.gov/litigation/litreleases/2009/lr20968.htm",
+            "date": "2009-03-11"
+          },
+          {
+            "title": "DOJ Press Release: Madoff Sentenced to 150 Years",
+            "url": "https://www.justice.gov/usao-sdny/pr/ponzi-scheme-operator-bernard-madoff-sentenced-150-years",
+            "date": "2009-06-29"
+          }
+        ]
+      },
+      {
+        "id": "scheme_false_device_claims",
+        "name": "False Medical Device Efficacy Claims",
+        "fraud_types": [
+          "fraud_false_medical_claims"
+        ],
+        "description": "Misrepresent device capabilities and testing",
+        "examples": [
+          "case_theranos"
+        ],
+        "impact": "$452 million restitution",
+        "sources": [
+          {
+            "title": "DOJ Press Release: Elizabeth Holmes Sentenced for Theranos Fraud",
+            "url": "https://www.justice.gov/usao-ndca/pr/theranos-founder-elizabeth-holmes-sentenced",
+            "date": "2023-05-30"
+          },
+          {
+            "title": "SEC Charges Theranos and Elizabeth Holmes with Fraud",
+            "url": "https://www.sec.gov/news/press-release/2018-41",
+            "date": "2018-03-14"
+          }
+        ]
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "source": "org_dod",
+      "target": "fraud_contractor",
+      "relationship": "HAS_FRAUD_TYPE",
+      "properties": {
+        "severity": "high",
+        "recovery_fy2024": "$3 billion"
+      }
+    },
+    {
+      "source": "org_va",
+      "target": "fraud_disability",
+      "relationship": "HAS_FRAUD_TYPE",
+      "properties": {
+        "program_size": "$193 billion",
+        "detection_rate": "low"
+      }
+    },
+    {
+      "source": "org_dha",
+      "target": "fraud_tricare",
+      "relationship": "HAS_FRAUD_TYPE",
+      "properties": {
+        "fy2024_restitution": "$2.7 million"
+      }
+    },
+    {
+      "source": "org_dodig",
+      "target": "org_dod",
+      "relationship": "INVESTIGATES",
+      "properties": {}
+    },
+    {
+      "source": "org_vaoig",
+      "target": "org_va",
+      "relationship": "INVESTIGATES",
+      "properties": {}
+    },
+    {
+      "source": "fraud_recruiting",
+      "target": "case_ngarng_scandal",
+      "relationship": "EXAMPLE_CASE",
+      "properties": {
+        "cost": "$100 million"
+      }
+    },
+    {
+      "source": "fraud_disability",
+      "target": "case_kinsley_kilpatrick",
+      "relationship": "EXAMPLE_CASE",
+      "properties": {}
+    },
+    {
+      "source": "case_ngarng_scandal",
+      "target": "scheme_recruiting_kickback",
+      "relationship": "USES_SCHEME",
+      "properties": {}
+    },
+    {
+      "source": "fraud_disability",
+      "target": "scheme_false_injury",
+      "relationship": "USES_SCHEME",
+      "properties": {}
+    },
+    {
+      "source": "fraud_bah",
+      "target": "scheme_false_dependents",
+      "relationship": "USES_SCHEME",
+      "properties": {}
+    },
+    {
+      "source": "fraud_bah",
+      "target": "scheme_false_address",
+      "relationship": "USES_SCHEME",
+      "properties": {}
+    },
+    {
+      "source": "fraud_tricare",
+      "target": "scheme_fake_billing",
+      "relationship": "USES_SCHEME",
+      "properties": {}
+    },
+    {
+      "source": "org_doj",
+      "target": "fraud_contractor",
+      "relationship": "ENFORCES",
+      "properties": {
+        "mechanism": "False Claims Act",
+        "fy2024_recovery": "$2.9 billion"
+      }
+    },
+    {
+      "source": "individual_bernie_madoff",
+      "target": "case_bernie_madoff",
+      "relationship": "PERPETRATOR_OF",
+      "properties": {
+        "sentence": "150 years",
+        "amount": "$65 billion+"
+      }
+    },
+    {
+      "source": "individual_elizabeth_holmes",
+      "target": "case_theranos",
+      "relationship": "PERPETRATOR_OF",
+      "properties": {
+        "sentence": "11 years",
+        "restitution": "$452 million"
+      }
+    },
+    {
+      "source": "individual_mark_skidmore",
+      "target": "case_pentagon_accounting",
+      "relationship": "WHISTLEBLOWER_EXPOSED",
+      "properties": {
+        "discovery": "$21 trillion Pentagon plugs"
+      }
+    },
+    {
+      "source": "individual_sherron_watkins",
+      "target": "case_enron",
+      "relationship": "WHISTLEBLOWER_EXPOSED",
+      "properties": {
+        "impact": "Executive imprisonments"
+      }
+    },
+    {
+      "source": "individual_cynthia_cooper",
+      "target": "case_worldcom",
+      "relationship": "WHISTLEBLOWER_EXPOSED",
+      "properties": {
+        "impact": "5 executive imprisonments"
+      }
+    },
+    {
+      "source": "individual_toni_jaffe",
+      "target": "case_ngarng_scandal",
+      "relationship": "PERPETRATOR_OF",
+      "properties": {
+        "amount": "$15.2 million",
+        "sentence": "30 months"
+      }
+    },
+    {
+      "source": "org_doj",
+      "target": "case_theranos",
+      "relationship": "PROSECUTED",
+      "properties": {
+        "settlement": "$452 million"
+      }
+    },
+    {
+      "source": "org_fbi",
+      "target": "case_bernie_madoff",
+      "relationship": "INVESTIGATED",
+      "properties": {
+        "arrest_date": "2008-12-11"
+      }
+    },
+    {
+      "source": "org_sec",
+      "target": "case_theranos",
+      "relationship": "INVESTIGATED",
+      "properties": {}
+    },
+    {
+      "source": "org_enron",
+      "target": "fraud_accounting_manipulation",
+      "relationship": "HAS_FRAUD_TYPE",
+      "properties": {
+        "period": "1990s-2001",
+        "impact": "Firm dissolution"
+      }
+    },
+    {
+      "source": "org_worldcom",
+      "target": "fraud_accounting_manipulation",
+      "relationship": "HAS_FRAUD_TYPE",
+      "properties": {
+        "amount": "$3.8 billion"
+      }
+    },
+    {
+      "source": "org_raytheon",
+      "target": "fraud_contractor",
+      "relationship": "HAS_FRAUD_TYPE",
+      "properties": {
+        "settlement": "$950 million+"
+      }
+    },
+    {
+      "source": "org_raytheon",
+      "target": "fraud_cybersecurity",
+      "relationship": "HAS_FRAUD_TYPE",
+      "properties": {
+        "settlement": "$8.4 million"
+      }
+    },
+    {
+      "source": "case_raytheon",
+      "target": "org_doj",
+      "relationship": "PROSECUTED_BY",
+      "properties": {}
+    },
+    {
+      "source": "individual_zach_barton",
+      "target": "case_kinsley_kilpatrick",
+      "relationship": "SIMILAR_CASE_TYPE",
+      "properties": {
+        "fraud_type": "disability_fraud"
+      }
+    },
+    {
+      "source": "fraud_accounting_adjustments",
+      "target": "case_pentagon_accounting",
+      "relationship": "EXAMPLE_CASE",
+      "properties": {
+        "amount": "$21 trillion+"
+      }
+    },
+    {
+      "source": "org_gao",
+      "target": "case_pentagon_accounting",
+      "relationship": "INVESTIGATED",
+      "properties": {}
+    }
+  ]
+}
