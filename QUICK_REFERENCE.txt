@@ -1,0 +1,300 @@
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                  MILITARY FRAUD KNOWLEDGE GRAPH                              ║
+║                     QUICK REFERENCE GUIDE v1.0                               ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ ENTITY TYPES & PROPERTIES                                                    │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+ORGANIZATIONS (8 total)
+├─ Department of Defense (DoD)
+│  └─ Budget: $893 billion FY2025
+├─ Veterans Affairs (VA)
+│  └─ Program Size: $193 billion
+├─ DoD Office of Inspector General
+├─ VA Office of Inspector General
+│  └─ Investigations/Year: 63
+├─ Defense Criminal Investigative Service (DCIS)
+│  └─ FY2024 Recovery: $3 billion
+├─ Air Force Office of Special Investigations (AFOSI)
+│  └─ FY2024 Recovery: $623 million
+├─ Defense Health Agency (DHA)
+└─ Department of Justice (DOJ)
+
+FRAUD TYPES (9 total)
+├─ VA Disability Fraud
+│  ├─ Program: $193B
+│  ├─ Detection Rate: Low (63/year)
+│  └─ Examples: 4+ major cases
+├─ BAH Fraud
+│  └─ Schemes: False dependents, false address, sham marriages
+├─ Military Recruiting Fraud
+│  ├─ Major Case: NGARNG Scandal ($100M+)
+│  └─ Individuals Involved: 1,200+
+├─ TRICARE Healthcare Fraud
+│  ├─ FY2024 Restitution: $2.7M
+│  └─ Major Case: $65M scheme
+├─ Defense Contractor Fraud
+│  ├─ FY2024 Recovery: $3B
+│  └─ Major Case: Raytheon $950M
+├─ GTCC Travel Card Fraud
+│  ├─ Detected: $2.4M+
+│  └─ Schemes: Personal use, casinos
+├─ Payroll Fraud
+├─ GI Bill Fraud
+└─ Identity Theft
+   ├─ 2024 Reports: 38,000
+   └─ Credit Card: 11,000
+
+CASES (11+ total)
+├─ Kinsley Kilpatrick (Fake Paralysis)
+│  └─ Amount: $189,000 | Status: Convicted
+├─ Gregory Heimann (Wheelchair Fraud)
+│  └─ Amount: $245,000 | Status: Arrested
+├─ Crystal Riedling (Arm Disability)
+│  └─ Amount: $300,000 | Status: Convicted
+├─ Richard Meleski (Fake Service)
+│  └─ Amount: $300,000 | Status: Convicted
+├─ NGARNG Scandal
+│  └─ Amount: $100M+ | Status: Multiple Convictions
+├─ Raytheon Settlement
+│  └─ Amount: $950M | Year: 2024
+├─ $65M TRICARE Scheme
+├─ Philadelphia VA Rubber-Stamp
+│  └─ Amount: $2.2M | Status: Discovered
+└─ (Additional contractor cases)
+
+SCHEMES (13+ total)
+├─ False Injury Claims
+├─ False Dependents
+├─ Sham Marriages
+├─ Fabricated Military Service
+├─ Recruiting Bonus Kickback
+├─ False Cost/Pricing Data
+├─ Double-Billing
+├─ Product Substitution
+├─ Bid Rigging
+├─ Personal Travel Card Use
+├─ False Healthcare Billing
+└─ (Additional schemes)
+
+STATISTICS (10+ total)
+├─ DOD Confirmed Fraud
+│  └─ $10.8B (2017-2024)
+├─ Military Consumer Fraud 2024
+│  └─ $584M (99,443 complaints)
+├─ Identity Theft 2024
+│  └─ 38,000 reports
+├─ FCA Settlements (All Sectors)
+│  └─ $2.9B (FY2024)
+├─ DOD-Related FCA
+│  └─ $552M (FY2023)
+├─ DCIS Recovery
+│  └─ $3B (6 months)
+├─ AFOSI Recovery
+│  └─ $623M (FY2024)
+├─ DoD OIG Criminal Recovery
+│  └─ $1.496B (FY2024)
+└─ (Additional statistics)
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ RELATIONSHIP TYPES                                                           │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+HAS_FRAUD_TYPE
+├─ DoD → Contractor Fraud
+├─ VA → Disability Fraud
+├─ VA → BAH Fraud
+└─ (More...)
+
+INVESTIGATES
+├─ DoD-IG → DoD
+├─ VA-IG → VA
+├─ DCIS → DoD
+└─ AFOSI → USAF
+
+EXAMPLE_CASE
+├─ Disability Fraud → 4 cases
+├─ Recruiting Fraud → NGARNG case
+├─ Contractor Fraud → Raytheon + others
+└─ (More...)
+
+USES_SCHEME
+├─ Disability Fraud → False Injury, Fake Service
+├─ BAH Fraud → False Dependents, False Address
+├─ Contractor Fraud → False Pricing, Double-Billing
+└─ (More...)
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ FILE FORMAT QUICK START                                                      │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+JSON
+┌─────────────────────────────────────────────────────┐
+│ import json                                         │
+│ kg = json.load(open('military_fraud_kg.json'))    │
+│ fraud_types = kg['nodes']['fraud_types']          │
+└─────────────────────────────────────────────────────┘
+
+PYTHON
+┌─────────────────────────────────────────────────────┐
+│ from military_fraud_kg_implementation import *     │
+│ kg = MilitaryFraudKnowledgeGraph()                │
+│ cases = kg.get_fraud_cases_by_type(fraud_id)     │
+└─────────────────────────────────────────────────────┘
+
+NEO4J/CYPHER
+┌─────────────────────────────────────────────────────┐
+│ MATCH (f:FraudType)-[:EXAMPLE_CASE]->(c:Case)    │
+│ RETURN f.name, COUNT(c) as case_count            │
+└─────────────────────────────────────────────────────┘
+
+GRAPHQL
+┌─────────────────────────────────────────────────────┐
+│ query {                                            │
+│   fraudTypeWithDetails(id: "fraud_disability") {  │
+│     fraudType { name }                            │
+│     cases { name totalDefrauded }                 │
+│   }                                               │
+│ }                                                  │
+└─────────────────────────────────────────────────────┘
+
+RDF/SPARQL
+┌─────────────────────────────────────────────────────┐
+│ PREFIX mfkg: <http://military-fraud-kg.org/>     │
+│ SELECT ?fraud ?case                               │
+│ WHERE {                                           │
+│   ?fraud mfkg:hasExampleCase ?case              │
+│ }                                                 │
+└─────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ COMMON QUERIES                                                               │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+1. "Find all disability fraud cases"
+   Python: kg.get_fraud_cases_by_type("fraud_disability")
+   GraphQL: fraudCasesByFraudType(fraudTypeId: "fraud_disability")
+   Cypher: MATCH (f:FraudType {name: "VA Disability"})-[:EXAMPLE_CASE]->(c)
+
+2. "Get fraud schemes used"
+   Python: kg.get_fraud_schemes_by_type(fraud_type_id)
+   GraphQL: fraudTypeWithDetails(id: "fraud_type_id") { schemes }
+   Cypher: MATCH (f:FraudType)-[:USES_SCHEME]->(s) RETURN s.name
+
+3. "Find investigation oversight"
+   Python: kg.get_organization_oversight(org_id)
+   GraphQL: organization(id: "org_id") { investigatedBy }
+   Cypher: MATCH (ig:Organization)-[:INVESTIGATES]->(org) RETURN ig.name
+
+4. "Get total cases by fraud type"
+   GraphQL: fraudStatistics { topFraudTypes { name } }
+   Cypher: MATCH (f:FraudType)-[:EXAMPLE_CASE]->(c) RETURN f.name, COUNT(c)
+
+5. "Search all nodes"
+   Python: kg.search_nodes("disability")
+   GraphQL: searchNodes(query: "disability")
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ DEPLOYMENT OPTIONS                                                           │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+LIGHTWEIGHT (JSON-based)
+├─ Node.js REST API
+├─ Python Flask/Django
+├─ Static file hosting
+└─ Best for: Quick prototypes, small deployments
+
+MEDIUM (Graph DB)
+├─ Neo4j + Web Framework
+├─ GraphQL Server
+├─ RDF Triple Store
+└─ Best for: Medium deployments, complex queries
+
+ENTERPRISE (Full Stack)
+├─ Neo4j cluster
+├─ GraphQL + Microservices
+├─ Kubernetes deployment
+└─ Best for: Large organizations, high availability
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ KEY METRICS & STATISTICS                                                     │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+FINANCIAL IMPACT
+├─ Confirmed DOD Fraud: $10.8 Billion (2017-2024)
+├─ Consumer Fraud 2024: $584 Million
+├─ Defense Contractor Recovery: $3 Billion
+└─ Total FCA Recoveries: $2.9 Billion
+
+CASE VOLUME
+├─ VA Disability Cases Processed: 2+ Million/year
+├─ VA Investigations: ~63/year
+├─ Conviction Rate: High for prosecuted cases
+└─ Major Cases Documented: 12+
+
+ORGANIZATIONAL CAPACITY
+├─ DoD-IG Staff: Multiple investigative teams
+├─ VA-IG Investigators: ~63 investigations/year
+├─ DCIS Recovery Capacity: $3B/6 months
+└─ Enforcement: Federal prosecutors involved
+
+SCOPE OF FRAUD
+├─ Fraud Types: 9 major categories
+├─ Schemes Identified: 13+
+├─ Organizations Affected: 8
+├─ Detection Rate: Low (estimated < 1%)
+└─ Total Exposure: Unknown (billions estimated)
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ GETTING STARTED                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+Step 1: Choose Your Format
+  □ JSON (REST APIs)
+  □ Python (Analysis)
+  □ Neo4j (Graph DB)
+  □ GraphQL (Web Apps)
+  □ RDF (Semantic Web)
+
+Step 2: Review Documentation
+  └─ README-KG.md (implementation guides)
+
+Step 3: Try a Query
+  └─ Use examples from query files
+
+Step 4: Integrate
+  └─ Add to your application
+
+Step 5: Extend
+  └─ Add new nodes, relationships, cases
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ SUPPORT & RESOURCES                                                          │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+Documentation
+├─ README-KG.md (implementation guides)
+├─ Query examples in each format
+├─ Schema definitions
+└─ Use case descriptions
+
+External Resources
+├─ Neo4j: https://neo4j.com/docs/
+├─ GraphQL: https://graphql.org/docs/
+├─ RDF: https://www.w3.org/RDF/
+└─ Python: https://docs.python.org/
+
+Data Sources
+├─ DOD OIG Reports: https://www.dodig.mil/
+├─ VA OIG: https://www.vaoig.gov/
+├─ DOJ: https://www.justice.gov/
+└─ GAO: https://www.gao.gov/
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ MILITARY FRAUD KNOWLEDGE GRAPH v1.0                                          ║
+║ Complete Implementation | Multiple Formats | Production Ready                ║
+║ Last Updated: October 31, 2025                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝

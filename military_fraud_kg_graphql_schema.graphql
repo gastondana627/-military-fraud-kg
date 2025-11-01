@@ -1,0 +1,341 @@
+
+"""
+Military Fraud Knowledge Graph - GraphQL Schema
+Comprehensive schema for querying US Military Fraud data
+"""
+
+# ============================================
+# ENUMS
+# ============================================
+
+enum EntityType {
+  ORGANIZATION
+  FRAUD_TYPE
+  CASE
+  STATISTIC
+  SCHEME
+}
+
+enum RelationshipType {
+  HAS_FRAUD_TYPE
+  INVESTIGATES
+  EXAMPLE_CASE
+  USES_SCHEME
+  ENFORCES
+  PARENT_ORG
+}
+
+enum FraudCategory {
+  BENEFITS_FRAUD
+  PERSONNEL_BENEFITS_FRAUD
+  RECRUITMENT_FRAUD
+  HEALTHCARE_FRAUD
+  FINANCIAL_MISUSE
+  CONTRACT_FRAUD
+  PERSONNEL_FRAUD
+  CYBER_FRAUD
+  EXTERNAL_FRAUD
+}
+
+enum CaseStatus {
+  CONVICTED
+  ARRESTED
+  INDICTED
+  SETTLED
+  UNDER_INVESTIGATION
+  SENTENCED
+}
+
+# ============================================
+# INPUT TYPES
+# ============================================
+
+input OrganizationInput {
+  id: String!
+  name: String!
+  budget: String
+  type: String
+  role: String
+}
+
+input FraudTypeInput {
+  id: String!
+  name: String!
+  category: FraudCategory!
+  description: String
+  programSize: String
+}
+
+input CaseInput {
+  id: String!
+  name: String!
+  year: Int
+  totalDefrauded: String
+  status: CaseStatus
+  evidence: String
+}
+
+input StatisticInput {
+  id: String!
+  metric: String!
+  amount: String!
+  timePeriod: String
+  year: Int
+}
+
+input SchemeInput {
+  id: String!
+  name: String!
+  description: String!
+}
+
+input RelationshipInput {
+  sourceId: String!
+  targetId: String!
+  relationshipType: RelationshipType!
+  properties: String
+}
+
+# ============================================
+# OBJECT TYPES
+# ============================================
+
+type Organization {
+  id: String!
+  name: String!
+  budget: String
+  type: String
+  role: String
+  fraudTypes: [FraudType!]!
+  investigatedBy: [Organization!]!
+  investigates: [Organization!]!
+  relationships: [Relationship!]!
+}
+
+type FraudType {
+  id: String!
+  name: String!
+  category: FraudCategory!
+  description: String
+  programSize: String
+  detectionRate: String
+  estimatedCost: String
+  fy2024Recoveries: String
+  cases: [Case!]!
+  schemes: [Scheme!]!
+  organizations: [Organization!]!
+  relationships: [Relationship!]!
+}
+
+type Case {
+  id: String!
+  name: String!
+  year: Int
+  fraudType: FraudType
+  organization: Organization
+  description: String
+  claimedCondition: String
+  totalDefrauded: String
+  monthlyFraud: String
+  evidence: String
+  status: CaseStatus!
+  defendant: String
+  sentenceLength: String
+  relationships: [Relationship!]!
+}
+
+type Statistic {
+  id: String!
+  metric: String!
+  amount: String!
+  timePeriod: String
+  year: Int
+  category: String
+  subcategories: [String!]
+  notes: String
+}
+
+type Scheme {
+  id: String!
+  name: String!
+  description: String!
+  fraudTypes: [FraudType!]!
+  methods: [String!]
+  impact: String
+}
+
+type Relationship {
+  sourceId: String!
+  targetId: String!
+  relationshipType: RelationshipType!
+  source: Node!
+  target: Node!
+  properties: String
+}
+
+interface Node {
+  id: String!
+  relationships: [Relationship!]!
+}
+
+# ============================================
+# QUERY ROOT
+# ============================================
+
+type Query {
+  # Organization queries
+  organizations: [Organization!]!
+  organization(id: String!): Organization
+  organizationByName(name: String!): Organization
+
+  # Fraud type queries
+  fraudTypes: [FraudType!]!
+  fraudType(id: String!): FraudType
+  fraudTypesByCategory(category: FraudCategory!): [FraudType!]!
+
+  # Case queries
+  cases: [Case!]!
+  case(id: String!): Case
+  casesByFraudType(fraudTypeId: String!): [Case!]!
+  casesByStatus(status: CaseStatus!): [Case!]!
+  casesByYear(year: Int!): [Case!]!
+
+  # Statistic queries
+  statistics: [Statistic!]!
+  statistic(id: String!): Statistic
+  statisticsByMetric(metric: String!): [Statistic!]!
+
+  # Scheme queries
+  schemes: [Scheme!]!
+  scheme(id: String!): Scheme
+  schemesByFraudType(fraudTypeId: String!): [Scheme!]!
+
+  # Relationship queries
+  relationships: [Relationship!]!
+  relationshipsByType(type: RelationshipType!): [Relationship!]!
+
+  # Complex queries
+  fraudTypeWithDetails(id: String!): FraudTypeDetail
+  organizationProfile(id: String!): OrganizationProfile
+  caseDetails(id: String!): CaseDetail
+  searchNodes(query: String!): [Node!]!
+
+  # Analytics
+  fraudStatistics: FraudStatistics!
+  organizationStats: OrganizationStats!
+  totalFraudAmount: String!
+}
+
+# ============================================
+# COMPLEX RETURN TYPES
+# ============================================
+
+type FraudTypeDetail {
+  fraudType: FraudType!
+  cases: [Case!]!
+  schemes: [Scheme!]!
+  organizations: [Organization!]!
+  statistics: [Statistic!]!
+  totalCasesCount: Int!
+  totalCasesFraudAmount: String!
+}
+
+type OrganizationProfile {
+  organization: Organization!
+  fraudTypes: [FraudType!]!
+  cases: [Case!]!
+  overseers: [Organization!]!
+  oversees: [Organization!]!
+  fraudCount: Int!
+  totalRecoveries: String!
+}
+
+type CaseDetail {
+  case: Case!
+  fraudType: FraudType!
+  organization: Organization
+  schemes: [Scheme!]!
+  relatedCases: [Case!]!
+}
+
+type FraudStatistics {
+  totalConfirmedFraud: String!
+  totalFraudCases: Int!
+  averageFraudPerCase: String!
+  fraudTypeBreakdown: [FraudTypeStatistic!]!
+  topFraudTypes: [FraudType!]!
+  convictionRate: Float!
+}
+
+type FraudTypeStatistic {
+  fraudType: FraudType!
+  caseCount: Int!
+  totalAmount: String!
+  convictionCount: Int!
+}
+
+type OrganizationStats {
+  organizationCount: Int!
+  investigationOrgCount: Int!
+  militaryOrgs: [Organization!]!
+}
+
+# ============================================
+# MUTATION ROOT
+# ============================================
+
+type Mutation {
+  # Organization mutations
+  createOrganization(input: OrganizationInput!): Organization!
+  updateOrganization(id: String!, input: OrganizationInput!): Organization!
+  deleteOrganization(id: String!): Boolean!
+
+  # Fraud type mutations
+  createFraudType(input: FraudTypeInput!): FraudType!
+  updateFraudType(id: String!, input: FraudTypeInput!): FraudType!
+  deleteFraudType(id: String!): Boolean!
+
+  # Case mutations
+  createCase(input: CaseInput!): Case!
+  updateCase(id: String!, input: CaseInput!): Case!
+  deleteCase(id: String!): Boolean!
+
+  # Statistic mutations
+  createStatistic(input: StatisticInput!): Statistic!
+  updateStatistic(id: String!, input: StatisticInput!): Statistic!
+  deleteStatistic(id: String!): Boolean!
+
+  # Scheme mutations
+  createScheme(input: SchemeInput!): Scheme!
+  updateScheme(id: String!, input: SchemeInput!): Scheme!
+  deleteScheme(id: String!): Boolean!
+
+  # Relationship mutations
+  createRelationship(input: RelationshipInput!): Relationship!
+  deleteRelationship(sourceId: String!, targetId: String!): Boolean!
+}
+
+# ============================================
+# SUBSCRIPTION ROOT
+# ============================================
+
+type Subscription {
+  # Subscribe to new cases
+  caseAdded: Case!
+
+  # Subscribe to case updates
+  caseUpdated(id: String!): Case!
+
+  # Subscribe to fraud type updates
+  fraudTypeUpdated(id: String!): FraudType!
+}
+
+# ============================================
+# SCHEMA
+# ============================================
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}

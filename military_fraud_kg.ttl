@@ -1,0 +1,310 @@
+
+# ============================================
+# MILITARY FRAUD KNOWLEDGE GRAPH - RDF/TURTLE
+# ============================================
+# Semantic web implementation using RDF/Turtle format
+# Can be used with graph databases like Apache Jena, Virtuoso, or Blazegraph
+
+@prefix mfkg: <http://military-fraud-kg.org/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# ============================================
+# CLASS DEFINITIONS
+# ============================================
+
+mfkg:Organization a rdfs:Class ;
+    rdfs:label "Organization" ;
+    rdfs:comment "Government or organizational entity involved in fraud investigation or perpetration" .
+
+mfkg:FraudType a rdfs:Class ;
+    rdfs:label "Fraud Type" ;
+    rdfs:comment "Category of fraudulent activity" .
+
+mfkg:FraudCase a rdfs:Class ;
+    rdfs:label "Fraud Case" ;
+    rdfs:comment "Individual case of fraud with specific details and outcomes" .
+
+mfkg:FraudScheme a rdfs:Class ;
+    rdfs:label "Fraud Scheme" ;
+    rdfs:comment "Method or pattern used to commit fraud" .
+
+mfkg:Statistic a rdfs:Class ;
+    rdfs:label "Statistic" ;
+    rdfs:comment "Quantitative data related to military fraud" .
+
+# ============================================
+# PROPERTY DEFINITIONS
+# ============================================
+
+mfkg:hasFraudType a rdf:Property ;
+    rdfs:label "has fraud type" ;
+    rdfs:domain mfkg:Organization ;
+    rdfs:range mfkg:FraudType .
+
+mfkg:investigates a rdf:Property ;
+    rdfs:label "investigates" ;
+    rdfs:domain mfkg:Organization ;
+    rdfs:range mfkg:Organization .
+
+mfkg:usesScheme a rdf:Property ;
+    rdfs:label "uses scheme" ;
+    rdfs:domain mfkg:FraudType ;
+    rdfs:range mfkg:FraudScheme .
+
+mfkg:hasExampleCase a rdf:Property ;
+    rdfs:label "has example case" ;
+    rdfs:domain mfkg:FraudType ;
+    rdfs:range mfkg:FraudCase .
+
+mfkg:fraudAmount a rdf:Property ;
+    rdfs:label "fraud amount" ;
+    rdfs:range xsd:string .
+
+mfkg:detectionRate a rdf:Property ;
+    rdfs:label "detection rate" ;
+    rdfs:range xsd:string .
+
+mfkg:investigationsPerYear a rdf:Property ;
+    rdfs:label "investigations per year" ;
+    rdfs:range xsd:integer .
+
+# ============================================
+# ORGANIZATION INSTANCES
+# ============================================
+
+mfkg:DoD a mfkg:Organization ;
+    rdfs:label "Department of Defense" ;
+    mfkg:budget "893 billion USD"@en ;
+    mfkg:auditStatus "Failed 7 consecutive audits (2018-2025)"@en ;
+    dcterms:description "Primary U.S. military organization" ;
+    foaf:homepage <https://www.defense.gov> .
+
+mfkg:VA a mfkg:Organization ;
+    rdfs:label "Veterans Affairs" ;
+    mfkg:programSize "193 billion USD"@en ;
+    mfkg:flagshipProgram "VA Disability Program"@en ;
+    dcterms:description "Provides benefits and services to veterans" ;
+    foaf:homepage <https://www.va.gov> .
+
+mfkg:DoD-IG a mfkg:Organization ;
+    rdfs:label "DoD Office of Inspector General" ;
+    mfkg:role "Criminal investigations and fraud detection" ;
+    mfkg:investigates mfkg:DoD ;
+    dcterms:description "Oversight agency for Department of Defense" .
+
+mfkg:VA-IG a mfkg:Organization ;
+    rdfs:label "VA Office of Inspector General" ;
+    mfkg:investigationsPerYear "63"^^xsd:integer ;
+    mfkg:claimsProcessedAnnually "2000000"^^xsd:integer ;
+    mfkg:investigates mfkg:VA .
+
+mfkg:DCIS a mfkg:Organization ;
+    rdfs:label "Defense Criminal Investigative Service" ;
+    mfkg:fy2024Recovery "3000000000 USD"@en ;
+    dcterms:description "Criminal investigation agency for Department of Defense" .
+
+mfkg:AFOSI a mfkg:Organization ;
+    rdfs:label "Air Force Office of Special Investigations" ;
+    mfkg:fy2024Recovery "623000000 USD"@en ;
+    dcterms:description "Criminal investigation agency for Air Force" .
+
+# ============================================
+# FRAUD TYPE INSTANCES
+# ============================================
+
+mfkg:DisabilityFraud a mfkg:FraudType ;
+    rdfs:label "VA Disability Fraud" ;
+    mfkg:category "benefits_fraud" ;
+    mfkg:affectedProgram mfkg:VA ;
+    mfkg:fraudAmount "193 billion USD"@en ;
+    mfkg:detectionRate "Low (63 investigations/year out of 2M+ claims)"@en ;
+    dcterms:description "False claims for military disability benefits" .
+
+mfkg:BAHFraud a mfkg:FraudType ;
+    rdfs:label "Basic Allowance for Housing Fraud" ;
+    mfkg:category "personnel_benefits_fraud" ;
+    dcterms:description "False information to receive higher housing allowances" .
+
+mfkg:RecruitingFraud a mfkg:FraudType ;
+    rdfs:label "Military Recruiting Fraud" ;
+    mfkg:category "recruitment_fraud" ;
+    mfkg:estimatedCost "100000000 USD"@en ;
+    dcterms:description "False claims in recruitment bonus programs" .
+
+mfkg:TricareFraud a mfkg:FraudType ;
+    rdfs:label "TRICARE Healthcare Fraud" ;
+    mfkg:category "healthcare_fraud" ;
+    mfkg:fy2024Restitution "2700000 USD"@en ;
+    dcterms:description "Fraudulent billing to military healthcare program" .
+
+mfkg:ContractorFraud a mfkg:FraudType ;
+    rdfs:label "Defense Contractor Procurement Fraud" ;
+    mfkg:category "contract_fraud" ;
+    mfkg:fy2024Recoveries "3000000000 USD"@en ;
+    dcterms:description "False claims and defective pricing in defense contracts" .
+
+# ============================================
+# FRAUD CASE INSTANCES
+# ============================================
+
+mfkg:Case-Kinsley a mfkg:FraudCase ;
+    rdfs:label "Kinsley Kilpatrick - Fake Paralysis" ;
+    mfkg:fraudType mfkg:DisabilityFraud ;
+    mfkg:year "2025"^^xsd:gYear ;
+    mfkg:monthlyFraud "7900 USD"@en ;
+    mfkg:totalDefrauded "189000 USD"@en ;
+    mfkg:evidence "Surveillance video: backflips, dancing, ball pit diving"@en ;
+    mfkg:status "Convicted"@en ;
+    mfkg:claimedCondition "Paralysis from multiple sclerosis"@en .
+
+mfkg:Case-Heimann a mfkg:FraudCase ;
+    rdfs:label "Gregory P. Heimann Jr. - Wheelchair Fraud" ;
+    mfkg:fraudType mfkg:DisabilityFraud ;
+    mfkg:claimedCondition "Wheelchair-dependent from knee and back injuries"@en ;
+    mfkg:totalDefrauded "245000 USD"@en ;
+    mfkg:status "Arrested"@en ;
+    mfkg:evidence "Surveillance showing normal arm use"@en .
+
+mfkg:Case-Riedling a mfkg:FraudCase ;
+    rdfs:label "Crystal Riedling - Arm Disability Fraud" ;
+    mfkg:fraudType mfkg:DisabilityFraud ;
+    mfkg:monthlyFraud "4000 USD"@en ;
+    mfkg:totalDefrauded "300000 USD"@en ;
+    mfkg:status "Convicted"@en ;
+    mfkg:evidence "Disney World surveillance showing normal arm use"@en .
+
+mfkg:Case-Meleski a mfkg:FraudCase ;
+    rdfs:label "Richard Meleski - Fake Military Service" ;
+    mfkg:fraudType mfkg:DisabilityFraud ;
+    mfkg:fabricatedService "Fake Navy SEAL, Silver Star, POW status"@en ;
+    mfkg:totalDefrauded "300000 USD"@en ;
+    mfkg:status "Convicted"@en ;
+    mfkg:actualService "No military service"@en .
+
+mfkg:Case-NGARNG a mfkg:FraudCase ;
+    rdfs:label "Army National Guard Recruiting Bonus Scandal" ;
+    mfkg:fraudType mfkg:RecruitingFraud ;
+    mfkg:individualsImplicated "1200"^^xsd:integer ;
+    mfkg:confirmedFraud "29000000 USD"@en ;
+    mfkg:potentialCost "100000000 USD"@en ;
+    mfkg:status "Multiple convictions"@en ;
+    dcterms:description "Widespread recruiting fraud with kickback schemes" .
+
+mfkg:Case-Raytheon a mfkg:FraudCase ;
+    rdfs:label "Raytheon Company Settlement" ;
+    mfkg:fraudType mfkg:ContractorFraud ;
+    mfkg:settlementAmount "950000000 USD"@en ;
+    mfkg:violations "Defective pricing, foreign bribery, export control"@en ;
+    mfkg:status "Settled"@en ;
+    mfkg:year "2024"^^xsd:gYear .
+
+# ============================================
+# FRAUD SCHEME INSTANCES
+# ============================================
+
+mfkg:Scheme-FalseInjury a mfkg:FraudScheme ;
+    rdfs:label "False Injury/Disability Claims" ;
+    dcterms:description "Veterans claim injuries or disabilities they don't have"@en .
+
+mfkg:Scheme-FalseDependents a mfkg:FraudScheme ;
+    rdfs:label "False Dependent Claims" ;
+    dcterms:description "Service members claim dependents they don't have"@en .
+
+mfkg:Scheme-FakeServiceRecord a mfkg:FraudScheme ;
+    rdfs:label "Fabricated Military Service" ;
+    dcterms:description "Claim military service and combat awards never earned"@en .
+
+mfkg:Scheme-BidRigging a mfkg:FraudScheme ;
+    rdfs:label "Bid Rigging and Collusion" ;
+    dcterms:description "Contractors collude to rig government contract bids"@en .
+
+mfkg:Scheme-DoubleBilling a mfkg:FraudScheme ;
+    rdfs:label "Double-Billing" ;
+    dcterms:description "Contractors bill multiple contracts for same work"@en .
+
+# ============================================
+# STATISTIC INSTANCES
+# ============================================
+
+mfkg:Stat-TotalFraud a mfkg:Statistic ;
+    rdfs:label "Total DOD Confirmed Fraud" ;
+    mfkg:amount "10800000000 USD"@en ;
+    mfkg:timePeriod "2017-2024"@en ;
+    dcterms:issued "2025-10-31"^^xsd:date .
+
+mfkg:Stat-MilitaryScamLoss a mfkg:Statistic ;
+    rdfs:label "Military Consumer Fraud Loss" ;
+    mfkg:amount "584000000 USD"@en ;
+    mfkg:year "2024"^^xsd:gYear ;
+    dcterms:description "Losses to military-connected consumers from fraud" .
+
+mfkg:Stat-IdentityTheft a mfkg:Statistic ;
+    rdfs:label "Military Identity Theft" ;
+    mfkg:amount "38000"^^xsd:integer ;
+    mfkg:year "2024"^^xsd:gYear ;
+    dcterms:description "Identity theft reports from military community" .
+
+# ============================================
+# RELATIONSHIPS
+# ============================================
+
+# DoD has fraud types
+mfkg:DoD mfkg:hasFraudType mfkg:ContractorFraud ;
+    mfkg:hasFraudType mfkg:GTCCFraud ;
+    mfkg:hasFraudType mfkg:PayrollFraud .
+
+# VA has fraud types
+mfkg:VA mfkg:hasFraudType mfkg:DisabilityFraud ;
+    mfkg:hasFraudType mfkg:BAHFraud .
+
+# Investigation relationships
+mfkg:DoD-IG mfkg:investigates mfkg:DoD .
+mfkg:VA-IG mfkg:investigates mfkg:VA .
+
+# Fraud types have schemes
+mfkg:DisabilityFraud mfkg:usesScheme mfkg:Scheme-FalseInjury ;
+    mfkg:usesScheme mfkg:Scheme-FakeServiceRecord .
+
+mfkg:BAHFraud mfkg:usesScheme mfkg:Scheme-FalseDependents .
+
+mfkg:ContractorFraud mfkg:usesScheme mfkg:Scheme-BidRigging ;
+    mfkg:usesScheme mfkg:Scheme-DoubleBilling .
+
+# Fraud types have example cases
+mfkg:DisabilityFraud mfkg:hasExampleCase mfkg:Case-Kinsley ;
+    mfkg:hasExampleCase mfkg:Case-Heimann ;
+    mfkg:hasExampleCase mfkg:Case-Riedling ;
+    mfkg:hasExampleCase mfkg:Case-Meleski .
+
+mfkg:RecruitingFraud mfkg:hasExampleCase mfkg:Case-NGARNG .
+
+mfkg:ContractorFraud mfkg:hasExampleCase mfkg:Case-Raytheon .
+
+# ============================================
+# METADATA
+# ============================================
+
+<http://military-fraud-kg.org/> a dcat:Catalog ;
+    dcterms:title "US Military Fraud Knowledge Graph"@en ;
+    dcterms:description "Comprehensive knowledge graph of fraud types, cases, and statistics in US Military"@en ;
+    dcterms:issued "2025-10-31"^^xsd:date ;
+    dcterms:modified "2025-10-31"^^xsd:date ;
+    dcterms:creator "Research Assistant"@en ;
+    dcterms:language "en" ;
+    dcat:dataset mfkg:FraudDataset .
+
+mfkg:FraudDataset a dcat:Dataset ;
+    dcterms:title "Military Fraud Dataset"@en ;
+    dcterms:description "Dataset containing fraud cases, types, schemes, and statistics"@en ;
+    dcat:distribution mfkg:TurtleDistribution .
+
+mfkg:TurtleDistribution a dcat:Distribution ;
+    dcterms:format "Turtle" ;
+    dcat:mediaType "text/turtle" .

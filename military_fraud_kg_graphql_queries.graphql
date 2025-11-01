@@ -1,0 +1,253 @@
+
+# ============================================
+# MILITARY FRAUD KNOWLEDGE GRAPH - GRAPHQL QUERIES
+# ============================================
+
+# Query 1: Get all fraud types with their cases
+query GetFraudTypesWithCases {
+  fraudTypes {
+    id
+    name
+    category
+    cases {
+      id
+      name
+      year
+      status
+      totalDefrauded
+    }
+  }
+}
+
+# Query 2: Get organization profile with fraud details
+query GetOrganizationProfile {
+  organizationProfile(id: "org_va") {
+    organization {
+      id
+      name
+      budget
+    }
+    fraudTypes {
+      name
+      category
+    }
+    cases {
+      name
+      status
+      totalDefrauded
+    }
+    fraudCount
+    totalRecoveries
+  }
+}
+
+# Query 3: Get detailed case information
+query GetCaseDetails {
+  caseDetails(id: "case_kinsley_kilpatrick") {
+    case {
+      id
+      name
+      year
+      status
+      evidence
+      totalDefrauded
+    }
+    fraudType {
+      name
+      category
+    }
+    schemes {
+      name
+      description
+    }
+  }
+}
+
+# Query 4: Search for fraud types and cases
+query SearchFraud {
+  searchNodes(query: "disability") {
+    ... on FraudType {
+      id
+      name
+      category
+    }
+    ... on Case {
+      id
+      name
+      status
+    }
+  }
+}
+
+# Query 5: Get fraud statistics
+query GetFraudStatistics {
+  fraudStatistics {
+    totalConfirmedFraud
+    totalFraudCases
+    convictionRate
+    topFraudTypes {
+      name
+      category
+    }
+  }
+}
+
+# Query 6: Get cases by fraud type
+query GetCasesByType {
+  casesByFraudType(fraudTypeId: "fraud_disability") {
+    id
+    name
+    year
+    status
+    evidence
+    totalDefrauded
+  }
+}
+
+# Query 7: Get cases by status
+query GetCasesByStatus {
+  casesByStatus(status: CONVICTED) {
+    name
+    year
+    totalDefrauded
+    defendant: name
+  }
+}
+
+# Query 8: Get schemes used in fraud types
+query GetFraudSchemes {
+  fraudTypes {
+    name
+    schemes {
+      name
+      description
+      methods
+      impact
+    }
+  }
+}
+
+# Query 9: Get investigation oversight
+query GetInvestigationOversight {
+  organizations {
+    name
+    investigates {
+      name
+    }
+    investigatedBy {
+      name
+    }
+  }
+}
+
+# Query 10: Get fraud type details with all relationships
+query GetFraudTypeDetails {
+  fraudTypeWithDetails(id: "fraud_disability") {
+    fraudType {
+      name
+      category
+      programSize
+      detectionRate
+    }
+    cases {
+      name
+      year
+      status
+    }
+    schemes {
+      name
+    }
+    organizations {
+      name
+    }
+    statistics {
+      metric
+      amount
+    }
+  }
+}
+
+# ============================================
+# MUTATIONS EXAMPLES
+# ============================================
+
+# Mutation 1: Add new fraud case
+mutation AddNewCase {
+  createCase(input: {
+    id: "case_new_fraud"
+    name: "New Fraud Case"
+    year: 2025
+    status: UNDER_INVESTIGATION
+    totalDefrauded: "$500,000"
+  }) {
+    id
+    name
+    status
+  }
+}
+
+# Mutation 2: Update case status
+mutation UpdateCaseStatus {
+  updateCase(id: "case_kinsley_kilpatrick", input: {
+    id: "case_kinsley_kilpatrick"
+    name: "Kinsley Kilpatrick - Fake Paralysis"
+    year: 2025
+    status: SENTENCED
+    totalDefrauded: "$189000"
+  }) {
+    id
+    name
+    status
+  }
+}
+
+# Mutation 3: Create new fraud type
+mutation AddFraudType {
+  createFraudType(input: {
+    id: "fraud_new_type"
+    name: "New Fraud Type"
+    category: BENEFITS_FRAUD
+    description: "New fraud category discovered"
+  }) {
+    id
+    name
+    category
+  }
+}
+
+# Mutation 4: Create relationship between nodes
+mutation CreateRelationship {
+  createRelationship(input: {
+    sourceId: "fraud_new_type"
+    targetId: "case_new_fraud"
+    relationshipType: EXAMPLE_CASE
+  }) {
+    sourceId
+    targetId
+    relationshipType
+  }
+}
+
+# ============================================
+# SUBSCRIPTION EXAMPLES
+# ============================================
+
+# Subscription 1: Get notified when new cases are added
+subscription OnNewCase {
+  caseAdded {
+    id
+    name
+    status
+    year
+  }
+}
+
+# Subscription 2: Get updates on specific case
+subscription OnCaseUpdate {
+  caseUpdated(id: "case_kinsley_kilpatrick") {
+    id
+    name
+    status
+    totalDefrauded
+  }
+}

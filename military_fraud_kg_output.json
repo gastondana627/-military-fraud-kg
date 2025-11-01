@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "title": "US Military Fraud Knowledge Graph",
+    "version": "1.0",
+    "last_updated": "2025-10-31"
+  },
+  "nodes": [],
+  "relationships": [],
+  "statistics": {
+    "total_nodes": 0,
+    "total_relationships": 0,
+    "nodes_by_type": {
+      "organization": 0,
+      "fraud_type": 0,
+      "case": 0,
+      "statistic": 0,
+      "scheme": 0
+    }
+  }
+}
