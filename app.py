@@ -16,10 +16,11 @@ app = Flask(__name__)
 
 # 2. CONFIGURE CORS SECOND
 CORS(app, origins=[
-    "https://military-fraud-6mgjmwyy5-gastondana627s-projects.vercel.app",
     "https://military-fraud-kg.vercel.app",
+    "https://military-fraud-7a8qo3wow-gastondana627s-projects.vercel.app",
     "http://localhost:3000"
 ])
+
 
 # 3. THEN load KG data
 kg = MilitaryFraudKnowledgeGraph()
